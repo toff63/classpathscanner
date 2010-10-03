@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+	<bean id="xmlMappingExtractor" name="xmlMappingExtractor"
+		class="com.christophe.marchal.classpathscanner.metadata.extractor.XmlMappingExtractor">
+	<property name="metadata" ref="xmlMetadata"></property>
+	</bean>
+	<bean id="metadataIndex" name="metadataIndex"
+		class="com.christophe.marchal.classpathscanner.metadata.MetadataIndex"
+		init-method="init">
+		<property name="extractor" ref="xmlMappingExtractor" />
+		<property name="packageName"
+			value="com.christophe.marchal.classpathscanner.metadata.pojo">
+		</property>
+	</bean>
+	<bean id="xmlMetadata" name="xmlMetadata"
+		class="com.christophe.marchal.classpathscanner.metadata.xml.XmlMetadata">
+	</bean>
+</beans>
